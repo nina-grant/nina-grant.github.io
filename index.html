@@ -182,6 +182,43 @@
             box-shadow: 0 20px 40px rgba(0,119,190,0.3);
         }
 
+        /* About: sub-section + CV */
+        .cv-row {
+            display: flex; gap: 1rem; align-items: center; margin: 1.25rem 0 0.5rem;
+        }
+        .cv-button {
+            display: inline-block; padding: 10px 18px; border-radius: 999px;
+            background: #023e8a; color: #fff; text-decoration: none; font-weight: 600;
+            border: 2px solid #023e8a; transition: transform .2s ease, opacity .2s ease;
+        }
+        .cv-button:hover { transform: translateY(-2px); opacity: .95; }
+        .cv-updated { opacity: .8; }
+
+        .about-divider {
+            border: 0; height: 1px; background: rgba(2,62,138,.2); margin: 1.5rem 0;
+        }
+
+        .subsection-title {
+            font-size: 1.6rem; color: #023e8a; margin-bottom: 1rem; text-align: left;
+        }
+
+        .education-grid {
+            display: grid; gap: 1rem; 
+            border-left: 3px solid rgba(2,62,138,.15); padding-left: 1rem;
+        }
+
+        .education-item { display: grid; grid-template-columns: 140px 1fr; gap: 1rem; }
+        .edu-years { font-weight: 700; color: #0077be; }
+        .edu-degree { font-weight: 700; }
+        .edu-school { opacity: .8; margin-bottom: .25rem; }
+        .edu-notes { opacity: .85; }
+
+        @media (max-width: 600px) {
+        .education-item { grid-template-columns: 1fr; }
+        .edu-years { margin-bottom: .25rem; }
+        }
+
+
         /* Visualizations section */
         .visualizations {
             background: white;
@@ -247,7 +284,7 @@
 
         /* Contact section */
         .contact {
-            background: #023e8a;
+            background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
             color: white;
         }
 
@@ -260,7 +297,7 @@
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
             margin-top: 2rem;
         }
 
@@ -368,7 +405,7 @@
                     <p>
                         I’m a climate scientist-in-training passionate about developing safe, 
                         equitable solutions to the climate crisis. 
-                        My research focuses on climate 
+                        As a Ph.D. candidate and research assistant, my research focuses on climate 
                         intervention, agriculture impacts, and applying machine learning to 
                         climate data. 
                         I’m committed to making complex science accessible and actionable 
@@ -380,14 +417,45 @@
                         science communication, and policy—because time is short and the world 
                         can’t wait.
                     </p>
-                    
+
+                    <!-- CV row -->
+                    <div class="cv-row fade-in">
+                        <a id="cvLink" class="cv-button" href="assets/docs/Nina_Grant_CV.pdf" target="_blank" rel="noopener">
+                            Download CV
+                        </a>
+                        <small id="cvUpdated" class="cv-updated">Last updated: …</small>
+                    </div>
+
+                    <hr class="about-divider">
+
+                    <h3 class="subsection-title fade-in">Education</h3>
+                    <div class="education-grid">
+                        <div class="education-item fade-in">
+                            <div class="edu-years">2020–2026 (exp.)</div>
+                            <div class="edu-details">
+                                <div class="edu-degree">Ph.D., Atmospheric Science</div>
+                                <div class="edu-school">University Name</div>
+                                <p class="edu-notes">Climate intervention, ag impacts, ML for climate data.</p>
+                            </div>
+                        </div>
+
+                        <div class="education-item fade-in">
+                            <div class="edu-years">2016–2020</div>
+                            <div class="edu-details">
+                                <div class="edu-degree">B.S., Environmental Science</div>
+                                <div class="edu-school">University Name</div>
+                                <p class="edu-notes">Honors thesis on drought and crop risk.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- Visualizations Section -->
-    <section class="visualizations" id="visualizations">
+    <!-- <section class="visualizations" id="visualizations">
         <div class="container">
             <h2 class="section-title fade-in">Research & Visualizations</h2>
             <div class="charts-grid">
@@ -409,7 +477,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Skills Section -->
     <section class="skills" id="skills">
@@ -418,33 +486,37 @@
             <div class="skills-grid">
                 <div class="skill-card fade-in">
                     <div class="skill-icon">📊</div>
-                    <h3>Data Visualization</h3>
-                    <p>Expert in creating compelling charts, interactive dashboards, and infographics using D3.js, Python (matplotlib, plotly), R, and web technologies.</p>
+                    <h3>Data Analysis & Visualization</h3>
+                    <p>
+                        Expert in using Python to analyze 
+                        complex climate data and create clear, compelling visualizations.</p>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">🌡️</div>
                     <h3>Climate Modeling</h3>
-                    <p>Proficient in climate model analysis, statistical downscaling, and interpretation of CMIP6 data for regional and global climate projections.</p>
-                </div>
-                <div class="skill-card fade-in">
-                    <div class="skill-icon">💬</div>
-                    <h3>Science Communication</h3>
-                    <p>Skilled in translating complex scientific concepts for diverse audiences through presentations, articles, and multimedia content.</p>
+                    <p>
+                        Proficient in climate model analysis, statistical downscaling, and 
+                        interpretation of CMIP6 data for regional and global climate projections.</p>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">🐍</div>
                     <h3>Programming</h3>
-                    <p>Advanced proficiency in Python, R, JavaScript, SQL, and various scientific computing libraries for data analysis and visualization.</p>
+                    <p>
+                        Advanced proficiency in Python, bash, MATLAB, SQL, and various 
+                        scientific computing libraries for data downloads, preprocessing, and analysis.</p>
                 </div>
                 <div class="skill-card fade-in">
-                    <div class="skill-icon">🌊</div>
-                    <h3>Oceanography</h3>
-                    <p>Specialized knowledge in ocean-atmosphere dynamics, marine biogeochemistry, and coastal climate impact assessment.</p>
+                    <div class="skill-icon">💬</div>
+                    <h3>Public Speaking & Outreach</h3>
+                    <p>
+                        Skilled in translating complex scientific concepts for diverse audiences 
+                        through presentations, articles, and multimedia content.</p>
                 </div>
                 <div class="skill-card fade-in">
                     <div class="skill-icon">📝</div>
-                    <h3>Research & Writing</h3>
-                    <p>Published researcher with 25+ peer-reviewed publications in top-tier journals and extensive grant writing experience.</p>
+                    <h3>Policy Engagement</h3>
+                    <p>
+                        Bridging science and policy to ensure climate decisions are grounded in evidence and equity.</p>
                 </div>
             </div>
         </div>
@@ -455,7 +527,7 @@
         <div class="container">
             <div class="contact-content">
                 <h2 class="section-title fade-in">Let's Connect</h2>
-                <p class="fade-in">Interested in collaboration, consulting, or discussing climate science? I'd love to hear from you.</p>
+                <p>Interested in collaboration, consulting, or discussing climate science? I'd love to hear from you.</p>
                 <div class="contact-links">
                     <a href="mailto:nina.grant.phd@gmail.com" class="contact-link fade-in">Email</a>
                     <a href="https://linkedin.com/in/nina-grant-2021" class="contact-link fade-in">LinkedIn</a>
@@ -504,6 +576,23 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
+
+        // CV "Last updated" from the PDF's Last-Modified header
+        (function () {
+        const link = document.getElementById('cvLink');
+        const stamp = document.getElementById('cvUpdated');
+        if (!link || !stamp) return;
+
+        fetch(link.href, { method: 'HEAD' })
+            .then(r => r.headers.get('last-modified'))
+            .then(lm => {
+            if (!lm) return;
+            const d = new Date(lm);
+            const fmt = d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+            stamp.textContent = `Last updated: ${fmt}`;
+            })
+            .catch(() => {/* silent fallback */});
+        })();
 
         // Charts
         const chartColors = {

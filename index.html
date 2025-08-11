@@ -110,7 +110,7 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.9rem;
             font-weight: bold;
             color: white;
         }
@@ -158,7 +158,7 @@
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr 3fr;
             gap: 3rem;
             align-items: center;
         }
@@ -199,25 +199,57 @@
         }
 
         .subsection-title {
-            font-size: 1.6rem; color: #023e8a; margin-bottom: 1rem; text-align: left;
+            font-size: 1.8rem; color: #023e8a; margin-bottom: 1rem; text-align: center; margin-top: 1.5rem;
         }
 
+        /* Center the whole Education subsection */
+        .education-wrap {
+        max-width: 960px;    /* tweak 760–980px to taste */
+        margin: 0 auto;      /* centers inside .container */
+        }
+
+        /* Remove the old left border and draw a vertical line between columns */
         .education-grid {
-            display: grid; gap: 1rem; 
-            border-left: 3px solid rgba(2,62,138,.15); padding-left: 1rem;
+        position: relative;
+        display: grid;
+        gap: 1rem;
+        border-left: 0;          /* kill previous border on the left */
+        padding-left: 0;
         }
 
-        .education-item { display: grid; grid-template-columns: 140px 1fr; gap: 1rem; }
+        /* Keep two-column items */
+        .education-item {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 2rem;
+        position: relative;
+        }
+
+        /* Vertical divider that spans the whole Education block */
+        .education-grid::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(160px + 0.5rem);  /* 160px years col + half the gap */
+        width: 2px;
+        background: rgba(2, 62, 138, .15);
+        }
+
+        /* Education item styles */
+        .edu-details { padding-left: 1rem; }
         .edu-years { font-weight: 700; color: #0077be; }
         .edu-degree { font-weight: 800;  color: #023e8a; font-size: 1.08rem; }
         .edu-school {  font-weight: 600; opacity: .8; margin-bottom: .25rem; }
         .edu-notes { opacity: .85; }
 
+        /* Mobile: stack items and hide the vertical divider */
         @media (max-width: 600px) {
         .education-item { grid-template-columns: 1fr; }
-        .edu-years { margin-bottom: .25rem; }
+        .edu-details { padding-left: 0; }
+        .education-grid::before { display: none; }
+        .edu-years { margin-top: 1rem; }
         }
-
 
         /* Visualizations section */
         .visualizations {
@@ -421,51 +453,54 @@
                     <!-- CV row -->
                     <div class="cv-row fade-in">
                         <a id="cvLink" class="cv-button" href="assets/docs/Nina_Grant_CV.pdf" target="_blank" rel="noopener">
-                            Download CV
+                            View CV
                         </a>
                         <small id="cvUpdated" class="cv-updated">Last updated: …</small>
                     </div>
+                </div>
+            </div>
 
-                    <hr class="about-divider">
 
-                    <h3 class="subsection-title fade-in">Education</h3>
-                    <div class="education-grid">
-                        <div class="education-item fade-in">
-                            <div class="edu-years">2021–2026 (exp.)</div>
-                            <div class="edu-details">
-                                <div class="edu-degree">Ph.D., Atmospheric Science</div>
-                                <div class="edu-school">Rutgers University</div>
-                                <p class="edu-notes">Focus on climate intervention, agriculture impacts, ML for downscaling</p>
-                            </div>
-                        </div>
-                        
-                        <div class="education-item fade-in">
-                            <div class="edu-years">2021–2023</div>
-                            <div class="edu-details">
-                                <div class="edu-degree">M.S., Atmospheric Science</div>
-                                <div class="edu-school">Rutgers University</div>
-                                <p class="edu-notes">Focus on agricultural impacts of climate intervention</p>
-                            </div>
-                        </div>
+            <hr class="about-divider">
 
-                        <div class="education-item fade-in">
-                            <div class="edu-years">2017–2021</div>
-                            <div class="edu-details">
-                                <div class="edu-degree">B.A., Geosciences</div>
-                                <div class="edu-school">Princeton University</div>
-                                <p class="edu-notes">Focus on climate science and sustainability</p>
-                            </div>
+            <div class="education-wrap">
+                <h3 class="subsection-title fade-in">Education</h3>
+                <div class="education-grid">
+                    <div class="education-item fade-in">
+                        <div class="edu-years">2021–2026 (exp.)</div>
+                        <div class="edu-details">
+                            <div class="edu-degree">Ph.D., Atmospheric Science</div>
+                            <div class="edu-school">Rutgers University</div>
+                            <p class="edu-notes">Focus on climate intervention, agriculture impacts, ML for downscaling</p>
                         </div>
-                        <div class="education-item fade-in">
-                            <div class="edu-years">2015–2017</div>
-                            <div class="edu-details">
-                                <div class="edu-degree">High School</div>
-                                <div class="edu-school">North Carolina School of Science and Math (NCSSM)</div>
-                            </div>
+                    </div>
+                    
+                    <div class="education-item fade-in">
+                        <div class="edu-years">2021–2023</div>
+                        <div class="edu-details">
+                            <div class="edu-degree">M.S., Atmospheric Science</div>
+                            <div class="edu-school">Rutgers University</div>
+                            <p class="edu-notes">Focus on agricultural impacts of climate intervention</p>
+                        </div>
+                    </div>
+
+                    <div class="education-item fade-in">
+                        <div class="edu-years">2017–2021</div>
+                        <div class="edu-details">
+                            <div class="edu-degree">B.A., Geosciences</div>
+                            <div class="edu-school">Princeton University</div>
+                            <p class="edu-notes">Focus on climate science and sustainability</p>
+                        </div>
+                    </div>
+                    <div class="education-item fade-in">
+                        <div class="edu-years">2015–2017</div>
+                        <div class="edu-details">
+                            <div class="edu-degree">High School</div>
+                            <div class="edu-school">North Carolina School of Science and Math (NCSSM)</div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <div>
         </div>
     </section>
 

@@ -22,7 +22,7 @@
         /* Header with nature background */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+            background: url('assets/images/20240823_165103-crop.jpg') center/cover no-repeat;
             position: relative;
             display: flex;
             align-items: center;
@@ -34,6 +34,20 @@
         .hero::before {
             content: '';
             position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 40px;
+        }
+
+        /* .hero::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
@@ -41,19 +55,20 @@
             background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="water" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0"/></radialGradient></defs><circle cx="200" cy="150" r="80" fill="url(%23water)"/><circle cx="800" cy="200" r="120" fill="url(%23water)"/><circle cx="400" cy="400" r="100" fill="url(%23water)"/><circle cx="900" cy="500" r="90" fill="url(%23water)"/><circle cx="300" cy="650" r="110" fill="url(%23water)"/><path d="M0,600 Q300,500 600,550 T1200,600 L1200,800 L0,800 Z" fill="%23ffffff" fill-opacity="0.05"/></svg>');
             background-size: cover;
             opacity: 0.3;
-        }
+        } */
 
-        .hero-content {
+        /* .hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
             padding: 0 20px;
-        }
+        } */
 
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.3; /* tighter than default */
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
             animation: fadeInUp 1s ease-out;
         }
 
@@ -61,6 +76,7 @@
             font-size: 1.4rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
@@ -89,14 +105,16 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 119, 190, 0.95);
-            backdrop-filter: blur(10px);
+            /* background: rgba(0, 119, 190, 0.95); */
+            /* background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%); */
+            backdrop-filter: blur(40px);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            background: rgba(0, 119, 190, 0.98);
+            /* background: rgba(0, 119, 190, 0.98); */
+            background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
@@ -391,7 +409,7 @@
             .nav-links {
                 display: none;
             }
-            
+            /* TODO: make a mobile version */
             .charts-grid {
                 grid-template-columns: 1fr;
             }

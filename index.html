@@ -190,14 +190,13 @@
             width: 250px;
             height: 250px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #0077be, #48cae4);
-            display: flex;
+            object-fit: cover;   /* keeps proportions, crops excess */
+            box-shadow: 0 20px 40px rgba(0,119,190,0.3);
+            display: block;
+            margin: 0 auto;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
             color: white;
-            margin: 0 auto;
-            box-shadow: 0 20px 40px rgba(0,119,190,0.3);
         }
 
         /* About: sub-section + CV */
@@ -444,7 +443,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Science That Matters for a Changing Planet</h1>
-            <p>Bridging research, policy, and public engagement by translating science to inspire change and inform decisions.</p>
+            <p>Translating science jargon to inspire change and inform decisions.</p>
             <a href="#visualizations" class="cta-button">Explore My Work</a>
         </div>
     </section>
@@ -456,7 +455,7 @@
             <h2 class="section-title fade-in">About Me</h2>
             <div class="about-content">
                 <!-- <div class="profile-image">🌍</div> -->
-                <img src="assets/images/20241215_153613.jpg" alt="Nina Grant" class="profile-image">
+                <img src="assets/images/20201020_182442-1-scaled.jpg" alt="Nina Grant" class="profile-image">
                 <div class="about-text fade-in">
                     <p>
                         I’m a climate scientist-in-training passionate about developing safe, 

@@ -491,6 +491,42 @@
                 backdrop-filter: blur(20px);
             }
         }
+
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;              /* always on top */
+            font-size: 1.5rem;
+            background: #0077be;       /* match your theme */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: none;             /* hidden by default */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            line-height: 15px;
+            }
+
+        #scrollTopBtn:hover {
+            background: #023e8a;
+            transform: translateY(-3px);
+            }
+
+        /* Make sure it’s thumb-friendly on small screens */
+        @media (max-width: 600px) {
+            #scrollTopBtn {
+                bottom: 15px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 1.8rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1034,6 +1070,24 @@
         document.querySelectorAll('a[href^="http"], a[href$=".pdf"]').forEach(link => {
             link.setAttribute('target', '_blank');
             link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+    <button id="scrollTopBtn" title="Go to top">↑</button>
+    <script>
+        const scrollBtn = document.getElementById("scrollTopBtn");
+
+        // Show button after scrolling down ~200px
+        window.addEventListener("scroll", () => {
+        if (document.documentElement.scrollTop > 200 || document.body.scrollTop > 200) {
+            scrollBtn.style.display = "block";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+        });
+
+        // Smooth scroll to top on click
+        scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
         });
     </script>
 

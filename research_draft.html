@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research — Nina Grant</title>
+
+  <!-- Minimal styles to match your site -->
+  <style>
+    :root{
+      --blue-900:#023e8a; --blue-700:#0077be; --blue-400:#48cae4; --bg-grad:linear-gradient(135deg,#e0f7fa 0%,#b3e5fc 100%);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:#2c3e50;line-height:1.6}
+    /* NAV – match index.html */
+    nav{
+    position: fixed;     /* instead of sticky */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(40px);
+    transition: all 0.3s ease;
+    }
+    nav.scrolled{
+    background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    .nav-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    }
+    .logo{ font-size: 1.9rem; font-weight: 700; color: #fff; }
+    .nav-links{
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    }
+    .nav-links a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color .3s ease;
+    }
+    .nav-links a:hover{ color: #48cae4; }
+
+    /* Mobile menu button */
+    .menu-toggle{
+    display: none;
+    background: transparent;
+    border: 0;
+    width: 40px; height: 40px;
+    }
+    .menu-toggle span{
+    display: block;
+    height: 2px;
+    margin: 7px 0;
+    background: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px){
+    .nav-links{ 
+        display: none;              /* hidden until toggled */
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nav-links.open{ display: flex; }
+    .menu-toggle{ display: inline-block; }
+    }
+
+    header.page-hero{
+        height: 50vh;
+        background: 
+            /* linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), dark overlay */
+            url('assets/images/20210628_200545.jpg') no-repeat center center/cover;
+        background-position: center 70%;
+        color:#fff;
+        text-align:center;
+        display: flex;
+        align-items: center;   /* vertical centering */
+        justify-content: center; /* horizontal centering */
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+    header.page-hero h1{
+        font-size:2.5rem;
+        margin-bottom:.75rem
+    }
+    header.page-hero p{
+        opacity:.95;
+        max-width:800px;
+        margin:0 auto
+    }
+    main{max-width:1100px;margin:0 auto;padding:3rem 1.25rem}
+    section.topic{background:#fff;border-radius:16px;padding:1.75rem;margin-bottom:2rem;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+    .topic h2{color:var(--blue-900);font-size:1.6rem;margin-bottom:.5rem}
+    .lede{font-style:italic;margin-bottom:1rem}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1.5rem;align-items:start}
+    .img-wrap{width:100%;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:var(--bg-grad);display:flex;align-items:center;justify-content:center}
+    .img-wrap img{width:100%;height:100%;object-fit:cover}
+    .why{margin-top:1rem;padding:1rem;border-left:4px solid var(--blue-700);background:rgba(72,202,228,.12);border-radius:8px}
+    .citations{margin-top:1rem}
+    .citations h3{font-size:1rem;color:var(--blue-900);margin-bottom:.25rem}
+    .citations ul{list-style:disc;padding-left:1.25rem}
+    .citations a{color:var(--blue-700);text-decoration:none}
+    .citations a:hover{text-decoration:underline}
+    footer{padding:3rem 1rem;text-align:center;color:#4c5b6b}
+    @media (max-width:900px){.grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<!-- Nav (same items; “Research” marked active) -->
+<nav id="navbar">
+    <div class="nav-container">
+        <div class="logo">Nina Grant</div>
+
+        <button class="menu-toggle" aria-label="Menu" id="menuToggle">
+        <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="research.html" aria-current="page">Research</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+  <!-- Page intro -->
+  <header class="page-hero">
+    <h1>Research</h1>
+    <p>I translate complex climate science into clear insights for decisions — from safeguarding crops to making climate data more useful locally.</p>
+  </header>
+
+  <main>
+
+    <!-- 1) Climate Intervention & Agriculture -->
+    <section class="topic" id="agriculture">
+      <h2>Climate Intervention & Agriculture</h2>
+      <p class="lede">🌾 What happens to our food if we intentionally try to cool the planet?</p>
+
+      <div class="grid">
+        <div>
+          <p>
+            I study how reflecting sunlight back into space (a possible climate intervention) might affect crops 
+            that billions of people rely on. My research looks at staples like rice and wheat in India, as well as 
+            global favorites like coffee and chocolate. These studies help us see whether interventions could reduce 
+            crop stress from extremes under climate change—or what new risks might come along.
+          </p>
+          <div class="why"><strong>Why this matters:</strong> Food security is one of the most direct ways people feel climate change. Understanding benefits and tradeoffs helps protect farmers and keep prices stable.</div>
+
+          <div class="citations">
+            <h3>Selected outputs</h3>
+            <ul>
+              <li><strong>Grant</strong>, Robock, Xia, Singh & Clark (2025). <em>Earth’s Future</em>. 
+                <a href="https://doi.org/10.1029/2024EF005262" target="_blank" rel="noopener">Publisher</a> | 
+                <a href="assets/docs/india_ag_2025.pdf" target="_blank" rel="noopener">PDF</a> |
+                <a href="https://github.com/nina-grant/indian-agriculture-paper" target="_blank" rel="noopener">Repo</a>
+              
+                <!-- nested list -->
+                <ul>
+                  <li>
+                    <strong><em>Eos Research Spotlight Article: </strong></em>
+                    <a href="https://eos.org/research-spotlights/how-could-solar-climate-intervention-strategies-affect-agriculture" target="_blank" rel="noopener">English</a> |
+                    <a href="https://eos.org/research-spotlights/how-could-solar-climate-intervention-strategies-affect-agriculture-spanish" target="_blank" rel="noopener">Spanish</a> |
+                    <a href="https://eos.org/research-spotlights/how-could-solar-climate-intervention-strategies-affect-agriculture-chinese" target="_blank" rel="noopener">Chinese</a>
+                  </li>
+                </ul>
+              </li>             
+              <li><strong>Grant</strong>, Kiniry & Aziz. Cocoa chapter in <em>Theobroma cacao – Past, Present and Future Insights</em> (IntechOpen). 
+                <a href="https://www.intechopen.com/online-first/1223127" target="_blank" rel="noopener">Publisher</a> | 
+                <a href="assets/docs/Cocoa_Chapter_2025.pdf" target="_blank" rel="noopener">PDF</a> |
+                <a href="https://github.com/nina-grant/cocoa-chapter" target="_blank" rel="noopener">Repo</a>
+              </li>
+              <li>Keeping Coffee and Chocolate on the Table in a Warming World (AGU25 abstract). 
+                <a href="assets/docs/AGU25_Abstract_coffee.pdf" target="_blank" rel="noopener">Abstract PDF</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="img-wrap">
+          <!-- Replace with your image -->
+          <img src="assets/images/research/agriculture.jpg" alt="Map and photos illustrating crops and climate intervention" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2) Downscaling & Machine Learning for Climate Impacts -->
+    <section class="topic" id="downscaling-ml">
+      <h2>Downscaling & Machine Learning for Climate Impacts</h2>
+      <p class="lede">🤖 Global models are too big-picture for local decisions. How do we zoom in?</p>
+
+      <div class="grid">
+        <div>
+          <p>
+            Climate models work best at the global scale, but farmers, city planners, and policymakers need local detail. 
+            I compare different methods — including machine learning — to “downscale” global climate projections into more
+             usable, high-resolution maps. I test whether these methods can be trusted even under new conditions, like artificial 
+            cooling of the planet, to create reliable data for impact assessments worldwide.
+          </p>
+          <div class="why"><strong>Why this matters:</strong> Local choices — from planting decisions to infrastructure design — depend on trustworthy, fine-scale climate information.</div>
+
+          <div class="citations">
+            <h3>Selected outputs</h3>
+            <ul>
+              <li>Comparing ML and Traditional Downscaling under SAI (CMIP26). 
+                <a href="assets/docs/CMIP26_BADS.pdf" target="_blank" rel="noopener">Abstract PDF</a></li>
+              <li>Singh, Sahany, Robock, <strong>Grant</strong> & Xia (submitted). <em>Water Resources Research</em>. 
+              <!-- <li>Standardized high-res datasets (in prep). <a href="#">Repo</a> | <a href="#">Docs</a></li> -->
+            </ul>
+          </div>
+        </div>
+
+        <figure class="img-wrap">
+          <img src="assets/images/research/downscaling.jpg" alt="Diagram showing global-to-local downscaling concept" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3) Evaluation of Climate & Weather Datasets -->
+    <section class="topic" id="dataset-eval">
+      <h2>Evaluation of Climate & Weather Datasets</h2>
+      <p class="lede">📊 How accurate are the gridded climate datasets we rely on every day?</p>
+
+      <div class="grid">
+        <div>
+          <p>
+            Scientists and industry often use global climate datasets as a stand-in for observations, but these 
+            products aren't true ground observations and therefore don’t always agree. I worked with the Electric Power 
+            Research Institute to check how well 
+            leading datasets capture heatwaves and heavy rainfall in the U.S. Knowing where each product is 
+            strong — and where it falls short — helps everyone from farmers to energy companies make smarter 
+            decisions. It’s also important because the changes we expect from global warming depend on where we 
+            set our baseline.
+          </p>
+          <div class="why"><strong>Why this matters:</strong> If the data we use to prepare for climate change is 
+            off, so are the decisions based on it. Testing these datasets improves trust and reliability.</div>
+
+          <div class="citations">
+            <h3>Selected outputs</h3>
+            <ul>
+              <li>Smith, <strong>Grant</strong>, Luo et&nbsp;al. (2025). <em>Scientific Reports</em>. 
+                <a href="https://doi.org/10.1038/s41598-025-97570-7" target="_blank" rel="noopener">Publisher</a> | 
+                <a href="assets/docs/SciRep_2025.pdf" target="_blank" rel="noopener">PDF</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="img-wrap">
+          <img src="assets/images/research/datasets.jpg" alt="U.S. map illustrating differences between climate datasets" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- 4) Climate Dynamics & Natural Analogs -->
+    <section class="topic" id="analogs">
+      <h2>Climate Dynamics & Natural Analogs</h2>
+      <p class="lede">🌍 What can past eruptions teach us about the future?</p>
+
+      <div class="grid">
+        <div>
+          <p>
+            Before focusing on agriculture and interventions, I studied how volcanic eruptions and Indian ocean 
+            temperature patterns influence the Indian monsoon. These natural “experiments” help us anticipate 
+            how the climate system might respond to human-made changes like solar geoengineering.
+          </p>
+          <div class="why"><strong>Why this matters:</strong> Nature’s past experiments offer clues for 
+            responsible choices about future interventions.</div>
+
+          <div class="citations">
+            <h3>Selected outputs</h3>
+            <ul>
+              <li>Senior Thesis (Princeton, 2021): Monsoon response to volcanic forcing and solar dimming. 
+                <a href="assets/docs/Grant_SeniorThesis.pdf" target="_blank" rel="noopener">PDF</a></li>
+              <li>Junior Independent Work (Princeton, 2020): SST predictors of monsoon breaks. 
+                <a href="assets/docs/fall_JP.pdf" target="_blank" rel="noopener">PDF</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="img-wrap">
+          <img src="assets/images/research/analogs.jpg" alt="Schematic of monsoon circulation and volcanic plume" />
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © <script>document.write(new Date().getFullYear());</script> Nina Grant
+  </footer>
+
+  <!-- JS for nav scroll + mobile toggle -->
+  <script>
+    // Gradient-on-scroll like index.html
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+    // Close mobile menu after clicking a link
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => links.classList.remove('open'));
+    });
+    </script>
+
+    <script>
+        // Force all external links to open in a new tab
+        document.querySelectorAll('a[href^="http"], a[href$=".pdf"]').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>

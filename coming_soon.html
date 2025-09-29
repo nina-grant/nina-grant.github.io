@@ -10,11 +10,31 @@
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Segoe UI',Tahoma,Verdana,sans-serif;color:#2c3e50;line-height:1.6}
     nav{position:sticky;top:0;background:rgba(0,119,190,.95);backdrop-filter:blur(10px);z-index: 1000}
+    nav{position:sticky;top:0;background:rgba(0,119,190,.95);backdrop-filter:blur(10px);z-index: 1000}
     .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem}
     .logo{color:#fff;font-weight:700}
     .nav-links{display:flex;list-style:none;gap:2rem}
     .nav-links a{color:#fff;text-decoration:none;font-weight:500}
     .nav-links a[aria-current="page"]{text-decoration:underline}
+    /* Hamburger button (hidden on desktop) */
+    .menu-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:.5rem;margin-left:auto}
+    .menu-toggle .bar{display:block;width:24px;height:2px;background:#fff;margin:5px 0;transition:transform .2s ease,opacity .2s}
+    /* Mobile layout */
+    @media (max-width: 768px){
+      .menu-toggle{display:block}
+      .nav-container{position:relative}
+      .nav-links{
+        position:absolute; top:100%; right:1rem; left:1rem;
+        display:none; flex-direction:column; gap:.75rem;
+        background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+        border-radius:12px; padding:12px;
+        box-shadow:0 12px 30px rgba(0,0,0,.15);
+        backdrop-filter: blur(8px);
+        z-index:1000;
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:.5rem 0}
+    }
     /* Hamburger button (hidden on desktop) */
     .menu-toggle{display:none;background:transparent;border:0;cursor:pointer;padding:.5rem;margin-left:auto}
     .menu-toggle .bar{display:block;width:24px;height:2px;background:#fff;margin:5px 0;transition:transform .2s ease,opacity .2s}
@@ -115,6 +135,23 @@
   </main>
 
   <footer>© <script>document.write(new Date().getFullYear());</script> Nina Grant</footer>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const links  = document.getElementById('navLinks');
+
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    // close menu after selecting a link
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 
   <script>
     const toggle = document.getElementById('menuToggle');

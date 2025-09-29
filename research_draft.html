@@ -147,10 +147,61 @@
     .citations{margin-top:1rem}
     .citations h3{font-size:1rem;color:var(--blue-900);margin-bottom:.25rem}
     .citations ul{list-style:disc;padding-left:1.25rem}
-    .citations a{color:var(--blue-700);text-decoration:none}
+    .citations a{color:var(--blue-700);position: relative;text-decoration:none}
     .citations a:hover{text-decoration:underline}
     footer{padding:3rem 1rem;text-align:center;color:#4c5b6b}
     @media (max-width:900px){.grid{grid-template-columns:1fr;}}
+    /* Underline animation for links in citations */
+    .citations a::after{
+      content:"";
+      position:absolute; left:0; bottom:-2px; height:2px; width:0%;
+      background: var(--blue-700);
+      transition: width .25s ease;
+    }
+    .citations a:hover::after{ width:100%; }
+
+
+    /* --- Subtle reveal + micro-interactions --- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: transform, opacity;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Optional: tiny lift on cards on hover (mouse only) */
+    @media (hover:hover) {
+      .topic { transition: transform .25s ease, box-shadow .25s ease; }
+      .topic:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,.08); }
+      .img-wrap img { transition: transform .6s ease; }
+      .img-wrap:hover img { transform: scale(1.02); }
+    }
+
+    /* Gentle hero zoom */
+    header.page-hero {
+      transform: scale(1);
+      transition: transform 1.2s ease;
+    }
+    header.page-hero.ready { transform: scale(1.02); }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal.visible, header.page-hero, .topic, .img-wrap img { 
+        animation: none !important; transition: none !important;
+        transform: none !important; opacity: 1 !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -177,14 +228,14 @@
 
   <!-- Page intro -->
   <header class="page-hero">
-    <h1>Research</h1>
-    <p>I translate complex climate science into clear insights for decisions — from safeguarding crops to making climate data more useful locally.</p>
+    <h1 class="reveal">Research</h1>
+    <p class="reveal">I translate complex climate science into clear insights for decisions — from safeguarding crops to making climate data more useful locally.</p>
   </header>
 
   <main>
 
     <!-- 1) Climate Intervention & Agriculture -->
-    <section class="topic" id="agriculture">
+    <section class="topic reveal" id="agriculture">
       <h2>Climate Intervention & Agriculture</h2>
       <p class="lede">🌾 What happens to our food if we intentionally try to cool the planet?</p>
 
@@ -227,7 +278,7 @@
           </div>
         </div>
 
-        <figure class="img-wrap">
+        <figure class="img-wrap reveal">
           <!-- Replace with your image -->
           <img src="assets/images/research/agriculture.jpg" alt="Map and photos illustrating crops and climate intervention" />
         </figure>
@@ -235,7 +286,7 @@
     </section>
 
     <!-- 2) Downscaling & Machine Learning for Climate Impacts -->
-    <section class="topic" id="downscaling-ml">
+    <section class="topic reveal" id="downscaling-ml">
       <h2>Downscaling & Machine Learning for Climate Impacts</h2>
       <p class="lede">🤖 Global models are too big-picture for local decisions. How do we zoom in?</p>
 
@@ -260,14 +311,14 @@
           </div>
         </div>
 
-        <figure class="img-wrap">
+        <figure class="img-wrap reveal">
           <img src="assets/images/research/downscaling.jpg" alt="Diagram showing global-to-local downscaling concept" />
         </figure>
       </div>
     </section>
 
     <!-- 3) Evaluation of Climate & Weather Datasets -->
-    <section class="topic" id="dataset-eval">
+    <section class="topic reveal" id="dataset-eval">
       <h2>Evaluation of Climate & Weather Datasets</h2>
       <p class="lede">📊 How accurate are the gridded climate datasets we rely on every day?</p>
 
@@ -295,14 +346,14 @@
           </div>
         </div>
 
-        <figure class="img-wrap">
+        <figure class="img-wrap reveal">
           <img src="assets/images/research/datasets.jpg" alt="U.S. map illustrating differences between climate datasets" />
         </figure>
       </div>
     </section>
 
     <!-- 4) Climate Dynamics & Natural Analogs -->
-    <section class="topic" id="analogs">
+    <section class="topic reveal" id="analogs">
       <h2>Climate Dynamics & Natural Analogs</h2>
       <p class="lede">🌍 What can past eruptions teach us about the future?</p>
 
@@ -328,7 +379,7 @@
           </div>
         </div>
 
-        <figure class="img-wrap">
+        <figure class="img-wrap reveal">
           <img src="assets/images/research/analogs.jpg" alt="Schematic of monsoon circulation and volcanic plume" />
         </figure>
       </div>
@@ -386,5 +437,36 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
         });
     </script>
+
+  <!-- animations scripts -->
+  <script>
+  // On-load hero micro-zoom
+  window.addEventListener('load', () => {
+    const hero = document.querySelector('header.page-hero');
+    if (hero) hero.classList.add('ready');
+  });
+
+  // IntersectionObserver reveal (matches the approach on index.html)
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target); // reveal once
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Optional tiny parallax shift for hero background
+  const heroHdr = document.querySelector('header.page-hero');
+  if (heroHdr && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', () => {
+      const y = Math.min(40, window.scrollY * 0.05); // cap movement
+      heroHdr.style.backgroundPosition = `center calc(70% + ${y}px)`;
+    }, { passive: true });
+  }
+</script>
+
 </body>
 </html>

@@ -42,6 +42,38 @@
     .links a{color:var(--blue-700);text-decoration:none;margin-right:1rem}
     .links a:hover{text-decoration:underline}
     footer{padding:3rem 1rem;text-align:center;color:#4c5b6b}
+    
+    /* Mobile menu button */
+    .menu-toggle{
+    display: none;
+    background: transparent;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    }
+    .menu-toggle span{
+    display: block;
+    height: 2px;
+    margin: 7px 0;
+    background: #fff;
+    }
+
+    .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;position:relative}
+    @media (max-width: 768px){
+      .nav-links{
+        display:none;
+        position:absolute;
+        z-index: 1000;           /* ensure over content */
+        top:100%; left:0; right:0;
+        padding:1rem 2rem;
+        background:linear-gradient(135deg,#48cae4 0%,#0077be 50%,#023e8a 100%);
+        flex-direction:column; gap:1rem;
+      }
+      .nav-links.open{display:flex;}
+      .menu-toggle{display:inline-block;}
+    }
+
+    /* Responsive */
   </style>
 </head>
 <body>
@@ -76,13 +108,14 @@
       <h2 style="color:var(--blue-900);margin-bottom:.5rem;">Where to find my work</h2>
       <div class="links" style="margin:.5rem 0 0;">
         <a href="https://scholar.google.com/citations?user=Ja6cgUwAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a>
-        <a href="CV_Grant_Nina.pdf" target="_blank" rel="noopener">CV (PDF) ↗</a>
+        <a href="assets/docs/Nina_Grant_CV.pdf" target="_blank" rel="noopener">CV (PDF) ↗</a>
         <a href="https://github.com/nina-grant" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </div>
   </main>
 
   <footer>© <script>document.write(new Date().getFullYear());</script> Nina Grant</footer>
+
   <script>
     const toggle = document.getElementById('menuToggle');
     const links  = document.getElementById('navLinks');
@@ -99,6 +132,7 @@
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
+
   </script>
 </body>
 </html>

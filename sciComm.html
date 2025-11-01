@@ -13,40 +13,85 @@
 
     /* Nav (matches research.html) */
     nav{
-      position:sticky;top:0;width:100%;z-index:1000;
-      background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
-      backdrop-filter: blur(10px);
+    position: fixed;     /* instead of sticky */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(40px);
+    transition: all 0.3s ease;
+    }
+    nav.scrolled{
+    background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     }
     .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem}
-    .logo{color:#fff;font-weight:700}
+    .logo{color:#fff;font-weight:700;font-size:1.9rem}
     .nav-links{display:flex;list-style:none;gap:2rem}
     .nav-links a{color:#fff;text-decoration:none;font-weight:500}
     .nav-links a[aria-current="page"]{text-decoration:underline}
 
+    /* Mobile menu button */
+    .menu-toggle{
+    display: none;
+    background: transparent;
+    border: 0;
+    width: 40px; height: 40px;
+    }
+    .menu-toggle span{
+    display: block;
+    height: 2px;
+    margin: 7px 0;
+    background: #fff;
+    }
+
+    @media (max-width: 768px){
+    .nav-links{ 
+        display: none;              /* hidden until toggled */
+        position: absolute;
+        top: 100%; left: 1rem; right: 1rem;
+        padding: 12px;
+        background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+        flex-direction: column;
+        gap: 0.75rem;
+        box-shadow:0 12px 30px rgba(0,0,0,.15);
+        border-radius:12px;
+    }
+    .nav-links.open{ display: flex; }
+      .nav-links a{padding:.5rem 0}
+    .menu-toggle{ display: inline-block; }
+    }
+
     /* Hero */
     header.page-hero{
-      height: 48vh; min-height: 360px;
-      background: url('/assets/images/20230929_151717_copy.jpg') no-repeat center/cover;
-      color:#fff; padding:5rem 1rem; text-align:center; position:relative;
+        height: 50vh;
+        background: 
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* dark overlay */
+            url('/assets/images/20250511_181536.jpg') no-repeat center center/cover;
+        background-position: center 45%;
+        color:#fff;
+        text-align:center;
+        display: flex;
+        align-items: center;   /* vertical centering */
+        justify-content: center; /* horizontal centering */
+        flex-direction: column;
+        padding: 0 1rem;
     }
-    header.page-hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
-    header.page-hero .inner{position:relative;max-width:900px;margin:0 auto}
-    header.page-hero h1{font-size:2.6rem;margin-bottom:.75rem}
-    header.page-hero p{opacity:.98;max-width:820px;margin:0 auto}
+    header.page-hero h1{font-size:2.5rem;margin-bottom:.75rem}
+    header.page-hero p{text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);opacity:.95;max-width:800px;margin:0 auto;font-size:1rem}
 
     main{max-width:1100px;margin:0 auto;padding:3rem 1.25rem}
 
     /* Mission box */
     .mission{background:#fff;border-radius:16px;padding:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:2rem}
     .mission strong{color:var(--blue-900)}
-    .mission-lead {text-align:center;font-size:1.4rem;color:var(--blue-700);margin-bottom:1rem;line-height:1.5;padding:1rem}
+    .mission-lead {text-align:center;font-size:1.4rem;color:var(--blue-700);margin-bottom:1rem;line-height:1.5;padding:1rem;margin-left:2.25rem;margin-right:2.25rem;}
 
     /* Tiles (reuse research style) */
     section.tile{background:#fff;border-radius:16px;padding:1.75rem;margin-bottom:2rem;box-shadow:0 10px 30px rgba(0,0,0,.06)}
     .tile h2{color:var(--blue-900);font-size:1.6rem;margin-bottom:.5rem}
     .lede{font-style:italic;margin-bottom:1rem}
     .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:1.35rem;align-items:start}
-    
+    @media (max-width:900px){.grid{grid-template-columns:1fr;}}
 
     /* Media wrapper for videos/slides */
     .media-wrap{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--bg-grad);display:flex;align-items:center;justify-content:center}
@@ -61,15 +106,56 @@
 
     footer{padding:3rem 1rem;text-align:center;color:#4c5b6b}
 
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    /* scroll to top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;              /* always on top */
+      font-size: 1.5rem;
+      background: #0077be;       /* match your theme */
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: none;             /* hidden by default */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      line-height: 15px;
+    }
+
+    #scrollTopBtn:hover {
+      background: #023e8a;
+      transform: translateY(-3px);
+    }
+
+    /* Make sure it’s thumb-friendly on small screens */
+    @media (max-width: 600px) {
+      #scrollTopBtn {
+        bottom: 15px;
+        right: 15px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+      }
+    }
+    
   </style>
 </head>
 <body>
   <!-- Nav -->
-  <nav>
+  <nav id="navbar">
     <div class="nav-container">
       <div class="logo">Nina Grant</div>
-      <ul class="nav-links">
+        <button class="menu-toggle" aria-label="Menu" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
         <li><a href="index.html#home">Home</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#skills">Skills</a></li>
@@ -103,62 +189,39 @@
 
     <!-- Tile 1: Solar Geo Video -->
     <section class="tile" id="solar-geo-video">
-      <h2>Solar Geo Society Video: Can We Cool the Planet?</h2>
-      <p class="lede">A 4‑minute primer on SAI—what it is, why scientists study it, and how to think about risks and trade‑offs.</p>
+      <h2>Solar Geo Society Video: Should We Cool the Planet?</h2>
+      <p class="lede">A 4‑minute primer on SAI, broken down into 10 simple numbers.</p>
       <div class="grid">
         <div>
           <p>
-            I wrote, narrated, and edited this short explainer to make geoengineering understandable in under five minutes. It frames SAI as
-            a research question, not a foregone conclusion, and encourages viewers to think about governance, equity, and comparisons with
-            unchecked warming.
+            For one of my first projects as a Solar Geo Society Ambassador, I wrote and recorded this professionally-filmed short explainer. 
+            The goal was to make solar geoengineering understandable in under five minutes and only 10 numbers. Because to understand solar geo,
+            you just need to remember the difference between trillions, billions, and millions.
           </p>
           <div class="links">
             <!-- TODO: replace # with real video URL -->
-            <a href="https://solargeo.org" target="_blank" rel="noopener">🌐 Learn more</a>
+            <a href="https://solargeo.org" target="_blank" rel="noopener">▶️ Watch</a>
           </div>
         </div>
         <figure class="media-wrap">
           <!-- Option A: Embed YouTube/Vimeo -->
           <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Solar Geo Explainer" allowfullscreen></iframe> -->
           <!-- Option B: Placeholder thumbnail -->
-          <img src="assets/images/research/downscaling.jpg" alt="Thumbnail for Solar Geo explainer video" />
+          <img src="/assets/images/sciComm/solargeo.png" alt="Thumbnail for Solar Geo explainer video" />
         </figure>
       </div>
     </section>
 
-    <!-- Tile 2: DGF Cape Town Talk -->
-    <section class="tile" id="dgf-cape-town">
-      <h2>Conference Talk: Can SAI Help Coffee &amp; Chocolate?</h2>
-      <p class="lede">Recorded at the Degrees Global Forum 2025</p>
-      <div class="grid">
-        <div>
-          <p>
-            I discuss how SAI could affect tropical tree crops, coffee and cocoa. This talk connects global cooling scenarios to everyday livelihoods, using cocoa and coffee as case studies. I walk through
-            our latest findings and explain how to weigh potential benefits against risks and uncertainties for farmers and supply chains.
-          </p>
-          <div class="links">
-            <a href="https://youtu.be/FgHST2JcwCk?si=SCqwZUvhuEw1TKv0&t=1319" target="_blank" rel="noopener">▶️ Watch</a>
-            <a href="https://degreesglobalforum.org/" target="_blank" rel="noopener">🌐 Conference Website</a>
-            <a href="#" target="_blank" rel="noopener">🖼️ Accompanying slides</a>
-            <a href="/assets/docs/AGU25_Abstract_coffee.pdf" target="_blank" rel="noopener">📑 Related abstract (AGU25)</a>
-          </div>
-        </div>
-        <figure class="media-wrap">
-          <!-- TODO: swap with embed or real thumbnail -->
-          <img src="assets/images/research/agriculture.jpg" alt="Talk thumbnail showing cocoa and coffee themes" />
-        </figure>
-      </div>
-    </section>
-
-    <!-- Tile 3: Climate Briefing Video -->
+    <!-- Tile 2: Climate Briefing Video -->
     <section class="tile" id="policy-briefing">
-      <h2>Climate Briefing Video: Why I Study Solar Geo</h2>
-      <p class="lede">A concise briefing for decision‑makers: the what, why, and how of research governance and equity.</p>
+      <h2>Climate Briefing Video: What is Solar Geo?</h2>
+      <p class="lede">A concise briefing on solar geoengineering—what it is, why scientists study it, and how to think about its risks and trade‑offs.</p>
       <div class="grid">
         <div>
           <p>
-            Designed for a non‑technical audience, this short video distills core ideas for policymakers: where the science stands, what responsible
-            research looks like, and how to compare intervention risks with the escalating risks of warming.
+            I was invited to contribute to <em>Climate Briefing</em>, a project where scientists describe climate solutions in plain language as if testifying to Congress or talking
+            at the holiday table in less than 5 minutes. Designed for a non‑technical audience, this short video distills the state of our current climate solutions,
+            the inspiration behind solar geo, and the trade‑offs associated with this approach.
           </p>
           <div class="links">
             <a href="https://www.climatebriefing.org/" target="_blank" rel="noopener">▶️ Watch</a>
@@ -166,7 +229,33 @@
         </div>
         <figure class="media-wrap">
           <!-- TODO: swap with embed or real thumbnail -->
-          <img src="assets/images/research/datasets.jpg" alt="Briefing video thumbnail" />
+          <img src="assets/images/sciComm/climatebriefing.png" alt="Briefing video thumbnail" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- Tile 3: DGF Cape Town Talk -->
+    <section class="tile" id="dgf-cape-town">
+      <h2>Conference Talk: Can SAI Save Coffee &amp; Chocolate from Climate Change?</h2>
+      <p class="lede">A 15-min talk on tropical agriculture recorded at the Degrees Global Forum 2025</p>
+      <div class="grid">
+        <div>
+          <p>
+            I discuss how SAI could affect tropical tree crops. This talk connects hypothetical global cooling scenarios to possible impacts on everyday lives, using cocoa and coffee as case studies. I walk through
+            our latest findings and explain how to interpret these results.
+          </p>
+          <div class="links">
+            <a href="https://youtu.be/FgHST2JcwCk?si=SCqwZUvhuEw1TKv0&t=1319" target="_blank" rel="noopener">▶️ Watch</a>
+            <a href="/assets/docs/Degrees Forum Cocoa.pdf" target="_blank" rel="noopener">🖼️ Accompanying slides</a>
+            <a href="https://degreesglobalforum.org/" target="_blank" rel="noopener">🌐 Conference Website</a>
+            <a href="/assets/docs/AGU25_Abstract_coffee.pdf" target="_blank" rel="noopener">📑 Related abstract (AGU25)</a>
+          </div>
+        </div>
+        <figure class="media-wrap">
+          <!-- TODO: swap with embed or real thumbnail -->
+          <!-- <iframe src="https://youtu.be/FgHST2JcwCk?si=SCqwZUvhuEw1TKv0&t=1319" title="DGF Cocoa Talk" allowfullscreen></iframe> -->
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/FgHST2JcwCk?si=qE3z_phAu2fxbKj8&amp;start=1319" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <!-- <img src="/assets/images/sciComm/dgf_v2.jpg" alt="Talk thumbnail showing cocoa and coffee themes" /> -->
         </figure>
       </div>
     </section>
@@ -206,5 +295,46 @@
       });
     });
   </script>
+
+  <!-- JS for nav scroll + mobile toggle -->
+  <script>
+    // Gradient-on-scroll like index.html
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+    // Close mobile menu after clicking a link
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => links.classList.remove('open'));
+    });
+  </script>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" title="Go to top">↑</button>
+    <script>
+        const scrollBtn = document.getElementById("scrollTopBtn");
+
+        // Show button after scrolling down ~200px
+        window.addEventListener("scroll", () => {
+        if (document.documentElement.scrollTop > 200 || document.body.scrollTop > 200) {
+            scrollBtn.style.display = "block";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+        });
+
+        // Smooth scroll to top on click
+        scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+
 </body>
 </html>

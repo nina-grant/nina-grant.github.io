@@ -73,6 +73,7 @@
         .hero .hero-bg .slide:nth-child(8) { animation-delay: 42s; }
 
         /* One fade timeline whose "visible slot" = 12.5% (100%/8) */
+        /* FIXME: fix the animations speed/lag */
         @keyframes heroFade {
         0%    { opacity: 0; }
         4%    { opacity: 1; }   /* ~0.24s fade-in */
@@ -519,7 +520,7 @@
         #scrollTopBtn:hover {
             background: #023e8a;
             transform: translateY(-3px);
-            }
+        }
 
         /* Make sure it’s thumb-friendly on small screens */
         @media (max-width: 600px) {

@@ -89,7 +89,7 @@
 
     /* HERO */
     header.page-hero{
-      height:55vh;
+      height:50vh;
       padding-top:80px; /* nav offset */
       background:
         linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.4)),
@@ -103,11 +103,12 @@
       padding:0 1.25rem;
     }
     header.page-hero h1{
-      font-size:2.6rem;
+      font-size:2.5rem;
       margin-bottom:.75rem;
     }
     header.page-hero p{
-      max-width:780px;
+      max-width:850px; 
+      font-size:1.2rem;
       opacity:.95;
     }
 
@@ -144,6 +145,9 @@
       color:var(--blue-900);
       font-size:1.6rem;
       margin-bottom:.35rem;
+    }
+    .topic p{
+        font-size:1.1rem;
     }
     .lede{
       font-style:italic;
@@ -273,7 +277,7 @@
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#skills">Skills</a></li>
         <li><a href="research.html">Research</a></li>
-        <li><a href="coming_soon.html">SciComm</a></li>
+        <li><a href="sciComm.html">SciComm</a></li>
         <li><a href="science-policy.html" aria-current="page">Science Policy</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
@@ -282,7 +286,7 @@
 
   <!-- HERO -->
   <header class="page-hero">
-    <h1>Science Policy & Civic Leadership</h1>
+    <h1>Science Policy</h1>
     <p>
       From monitoring policy developments to directly engaging decision-makers at local, national, and international levels
     </p>
@@ -296,14 +300,20 @@
         I see science policy as a two-way street: scientists bring evidence, and policymakers bring
         constraints, values, and tradeoffs. My goal is to help bridge those worlds, whether that means
         answering questions about solar radiation modification, explaining agricultural risks, or simply
-        listening and translating concerns back into research questions.
+        listening and translating concerns back into research questions. My goal is to help prevent the 
+        worst impacts of climate change, and I know science alone isn't enough to get us there. That's why
+        I pair my research with active policy engagement—urging policymakers to expand and accelerate the 
+        known solutions and educating them on emerging ones.
+        <!-- TODO: make paragraph font bigger on all pages -->
+         <!-- TODO: create logo for tab thumnail icon -->
       </p>
     </section>
 
     <!-- 1) Informing decision-makers -->
     <section class="topic" id="informing">
-      <h2>Briefing Policymakers</h2>
+      <h2>Expert Briefings & Direct Advocacy</h2>
       <p class="lede">🎙️ Bringing climate intervention and agriculture risks directly into rooms where decisions are made.</p>
+      <!-- TODO: get rid of ledes -->
 
       <div class="grid">
         <div>
@@ -328,7 +338,7 @@
         <figure class="img-wrap">
           <!-- Replace with your own photo -->
           <!-- e.g. assets/images/nina_policy_briefing.jpg -->
-          <img src="assets/images/nina_policy_briefing_placeholder.jpg"
+          <img src="assets/images/policy/canada.jpg"
                alt="Nina speaking to policymakers during a virtual briefing" />
         </figure>
       </div>
@@ -365,7 +375,7 @@
         <figure class="img-wrap">
           <!-- Replace with DC / Hill photo -->
           <!-- e.g. assets/images/dc_capitol_cherry.jpg -->
-          <img src="/assets/images/policy/IMG_20240319_150012.jpg"
+          <img src="/assets/images/policy/congress_visit.jpg"
                alt="View of the U.S. Capitol framed by cherry blossoms" />
         </figure>
       </div>
@@ -401,7 +411,7 @@
         <figure class="img-wrap">
           <!-- Replace with photo from a workshop / training / Hill day -->
           <!-- e.g. assets/images/nina_workshop.jpg -->
-          <img src="assets/images/nina_workshop_placeholder.jpg"
+          <img src="assets/images/policy/20241212_111038.jpg"
                alt="Nina participating in a science policy workshop" />
         </figure>
       </div>

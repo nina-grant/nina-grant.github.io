@@ -107,7 +107,7 @@
       margin-bottom:.75rem;
     }
     header.page-hero p{
-      max-width:850px; 
+      max-width:780px; 
       font-size:1.2rem;
       opacity:.95;
     }
@@ -188,6 +188,52 @@
       padding-left:1.2rem;
     }
     .highlight-list li{margin-bottom:.35rem;}
+
+    /* --- Policy highlights section (no outer card) --- */
+    .policy-section {
+        margin-bottom: 4rem;
+    }
+
+    .policy-section-title {
+        font-size: 1.6rem;
+        color: var(--blue-900);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #4299e1; /* full width underline */
+        width: 100%;
+    }
+
+    .policy-highlight-grid {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .policy-highlight-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .policy-highlight-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    .policy-highlight-card h3 {
+        color: #2d3748;
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .policy-highlight-card p {
+        color: #4a5568;
+        line-height: 1.7;
+    }
+
+
 
     /* Compact list box */
     .compact-box{
@@ -288,24 +334,75 @@
   <header class="page-hero">
     <h1>Science Policy</h1>
     <p>
-      From monitoring policy developments to directly engaging decision-makers at local, national, and international levels
+      From email blasts to expert briefings, directly engaging decision-makers at local, national, and international levels
     </p>
   </header>
 
   <main>
     <!-- Intro card -->
     <section class="intro-blurb">
-      <h2>From local advocacy to international briefings</h2>
+      <!-- <h2>From local advocacy to international briefings</h2> -->
       <p>
-        I see science policy as a two-way street: scientists bring evidence, and policymakers bring
-        constraints, values, and tradeoffs. My goal is to help bridge those worlds, whether that means
-        answering questions about solar radiation modification, explaining agricultural risks, or simply
-        listening and translating concerns back into research questions. My goal is to help prevent the 
-        worst impacts of climate change, and I know science alone isn't enough to get us there. That's why
+        <strong>I see science policy as a two-way street:</strong>  scientists bring evidence, and policymakers bring
+        constraints, values, and tradeoffs. My role is to help bridge those worlds, whether that means
+        answering questions about sunlight reflection methods (SRM), explaining agricultural risks, or simply
+        listening and translating concerns back into research questions. <strong>My goal is to help prevent the 
+        worst impacts of climate change</strong>, and I know <em><strong>science alone isn't enough</strong></em> to get us there. That's why
         I pair my research with active policy engagement—urging policymakers to expand and accelerate the 
         known solutions and educating them on emerging ones.
         <!-- TODO: make paragraph font bigger on all pages -->
          <!-- TODO: create logo for tab thumnail icon -->
+      </p>
+    </section>
+
+    <!-- Main Highlights -->
+    <section class="policy-section" id="policy-highlights">
+      <h2 class="policy-section-title">Policy Highlights &amp; Major Actions</h2>
+
+      <p style="color:#4a5568; margin-bottom:1.5rem;">
+          From UN and Canadian government briefings to congressional visits, these are some of the key
+          moments where my research has directly fed into climate and science policy discussions.
+      </p>
+
+      <div class="policy-highlight-grid">
+        <article class="policy-highlight-card">
+          <h3><span class="emoji">🌐</span>United Nations Climate Policy Session</h3>
+          <p>
+            <strong>Invited to brief UN officials on sunlight reflection methods (SRM)</strong>, sharing expert perspectives
+            on emerging climate intervention technologies, tradeoffs, and uncertainties in a closed-door
+            policy session.
+          </p>
+        </article>
+
+        <article class="policy-highlight-card">
+          <h3><span class="emoji">🍁</span>Canadian Government Briefing</h3>
+          <p>
+            Presented research findings and policy-relevant insights on climate interventions and food security to
+            <strong>300+ officials from Global Affairs Canada</strong>, translating technical model results into
+            clear implications for real-world decisions.
+          </p>
+        </article>
+
+        <article class="policy-highlight-card">
+          <h3><span class="emoji">🏛️</span>AGU Local Science Partner</h3>
+          <p>
+            Serving as an AGU Local Science Partner to engage directly with U.S. federal legislators, including
+            <strong>two congressional visits</strong> to advocate for strong science funding and evidence-based
+            climate policy.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Photo Break -->
+    <section class="policy-photo-break" style="margin: 3rem 0; text-align: center;">
+      <img 
+        src="assets/images/policy/20241213_143639.jpg" 
+        alt="Capitol building"
+        style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);"
+      >
+      <p style="margin-top: 0.75rem; font-size: 0.95rem; opacity: 0.8;">
+        Photo of the Capitol building during a Dec 2024 congressional visit
       </p>
     </section>
 
@@ -414,8 +511,11 @@
           <img src="assets/images/policy/20241212_111038.jpg"
                alt="Nina participating in a science policy workshop" />
         </figure>
+        <!-- TODO: add captions to pictures -->
       </div>
     </section>
+
+    
 
   </main>
 

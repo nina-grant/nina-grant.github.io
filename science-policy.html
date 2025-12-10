@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science Policy — Nina Grant</title>
+
+  <style>
+    :root {
+      --blue-900: #023e8a;
+      --blue-700: #0077be;
+      --blue-400: #48cae4;
+      --bg-grad: linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2c3e50;
+      line-height: 1.6;
+      background: #f5fbff;
+    }
+
+    /* NAV (matches site) */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(40px);
+      transition: all .3s ease;
+    }
+
+    nav.scrolled {
+      background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #48cae4;
+    }
+
+    .nav-links a[aria-current="page"] {
+      text-decoration: underline;
+    }
+
+    /* Mobile nav */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      width: 40px;
+      height: 40px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 2px;
+      margin: 7px 0;
+      background: #fff;
+    }
+
+    @media (max-width:768px) {
+      .menu-toggle {
+        display: inline-block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 1rem;
+        right: 1rem;
+        padding: 12px;
+        background: linear-gradient(135deg, #48cae4 0%, #0077be 50%, #023e8a 100%);
+        flex-direction: column;
+        gap: .75rem;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, .15);
+        border-radius: 12px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: .5rem 0;
+      }
+    }
+
+    /* HERO */
+    header.page-hero {
+      height: 50vh;
+      padding-top: 80px;
+      /* nav offset */
+      background:
+        linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .4)),
+        url('assets/images/policy/20250327_144129.jpg') center 60%/cover no-repeat;
+        /* TODO: remove the boat guy */
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1.25rem;
+    }
+
+    header.page-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: .75rem;
+    }
+
+    header.page-hero p {
+      max-width: 780px;
+      font-size: 1.2rem;
+      opacity: .95;
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 4rem;
+    }
+
+    .intro-blurb {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+      margin-top: -2rem;
+      margin-bottom: 2.25rem;
+      position: relative;
+    }
+
+    .intro-blurb h2 {
+      color: var(--blue-900);
+      font-size: 1.6rem;
+      margin-bottom: .5rem;
+    }
+
+    /* SECTION CARDS */
+    section.topic {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+    }
+
+    .topic h2 {
+      color: var(--blue-900);
+      font-size: 1.6rem;
+      margin-bottom: .35rem;
+    }
+
+    .topic p {
+      font-size: 1.0rem;
+    }
+
+    .lede {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.25fr .9fr;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .img-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+    }
+
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tagline {
+      margin-top: .85rem;
+      padding: .85rem 1rem;
+      border-left: 4px solid var(--blue-700);
+      background: rgba(72, 202, 228, .08);
+      border-radius: 8px;
+      font-size: .95rem;
+    }
+
+    .highlight-list {
+      margin-top: .75rem;
+      padding-left: 1.2rem;
+    }
+
+    .highlight-list li {
+      margin-bottom: .35rem;
+    }
+
+    /* --- Policy highlights section (no outer card) --- */
+    .policy-section {
+      margin-bottom: 4rem;
+    }
+
+    .policy-section-title {
+      font-size: 1.6rem;
+      color: var(--blue-900);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #4299e1;
+      /* full width underline */
+      width: 100%;
+    }
+
+    .policy-highlight-grid {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .policy-highlight-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .policy-highlight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .policy-highlight-card h3 {
+      color: #2d3748;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .policy-highlight-card p {
+      color: #4a5568;
+      line-height: 1.7;
+    }
+
+
+
+    /* Compact list box */
+    .compact-box {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      background: rgba(2, 62, 138, .03);
+      border: 1px solid rgba(2, 62, 138, .08);
+      font-size: .95rem;
+    }
+
+    .compact-box ul {
+      padding-left: 1.2rem;
+      margin-top: .4rem;
+    }
+
+    .compact-box li {
+      margin-bottom: .25rem;
+    }
+
+    /* Tiny “see also” link */
+    .see-also {
+      margin-top: .75rem;
+      font-size: .95rem;
+    }
+
+    .see-also a {
+      color: var(--blue-700);
+      text-decoration: none;
+    }
+
+    .see-also a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      color: #4c5b6b;
+      font-size: .9rem;
+    }
+
+    /* Scroll to top button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      font-size: 1.5rem;
+      background: #0077be;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+      display: none;
+      transition: opacity .3s ease, transform .3s ease;
+      line-height: 15px;
+    }
+
+    #scrollTopBtn:hover {
+      background: #023e8a;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width:600px) {
+      #scrollTopBtn {
+        bottom: 15px;
+        right: 15px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width:900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">Nina Grant</div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="sciComm.html">SciComm</a></li>
+        <li><a href="science-policy.html" aria-current="page">Science Policy</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="page-hero">
+    <h1>Science Policy</h1>
+    <p>
+      From email blasts to expert briefings, directly engaging decision-makers at local, national, and international
+      levels
+    </p>
+  </header>
+
+  <main>
+    <!-- Intro card -->
+    <section class="intro-blurb">
+      <!-- <h2>From local advocacy to international briefings</h2> -->
+      <p>
+        <strong>I view science policy as a two-way street:</strong> scientists bring evidence and recommendations, and policymakers bring
+        constraints, values, and tradeoffs. My role is to help bridge those worlds, whether that means
+        answering questions about sunlight reflection methods (SRM), explaining agricultural risks, or simply
+        listening and turning those concerns into research questions. <strong>My goal is to help prevent the
+          worst impacts of climate change</strong>, and I know <em><strong>science alone isn't enough</strong></em> to
+        get us there. That's why
+        I pair my research with active policy engagement—urging policymakers to expand and accelerate the
+        known solutions and educating them on emerging ones.
+        <!-- TODO: create logo for tab thumnail icon -->
+      </p>
+    </section>
+
+    <!-- Main Highlights -->
+    <section class="policy-section" id="policy-highlights">
+      <h2 class="policy-section-title">Policy Highlights &amp; Major Actions</h2>
+
+      <p style="color:#4a5568; margin-bottom:1.5rem;">
+        From UN and Canadian government briefings to congressional visits, these are some of the key
+        moments where my research has directly influenced climate and science policy discussions.
+      </p>
+
+      <div class="policy-highlight-grid">
+        <article class="policy-highlight-card">
+          <h3><span class="emoji">🌐</span>United Nations Climate Policy Session</h3>
+          <p>
+            <strong>Invited to brief UN officials on sunlight reflection methods (SRM)</strong>, sharing expert
+            perspectives
+            on emerging climate intervention technologies, tradeoffs, and uncertainties in a closed-door
+            policy session.
+          </p>
+        </article>
+
+        <article class="policy-highlight-card">
+          <h3><span class="emoji">🍁</span>Canadian Government Briefing</h3>
+          <p>
+            Presented research findings and policy-relevant insights on SRM and food security to
+            <strong>300+ officials from Global Affairs Canada</strong>. Translating technical model results into
+            clear implications for real-world decisions.
+          </p>
+        </article>
+
+        <article class="policy-highlight-card">
+          <h3><span class="emoji">🏛️</span>AGU Local Science Partner</h3>
+          <p>
+            Serving as an American Geophysical Union (AGU) Local Science Partner to regularly engage with U.S. federal legislators, including
+            <strong>two congressional visits</strong> to advocate for strong science funding and evidence-based
+            climate policy.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Photo Break -->
+    <section class="policy-photo-break" style="margin: 3rem 0; text-align: center;">
+      <img src="assets/images/policy/20241213_143639.jpg" alt="Capitol building"
+        style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);">
+      <p style="margin-top: 0.75rem; font-size: 0.95rem; opacity: 0.8;">
+        Photo of the Capitol building during a Dec 2024 congressional visit
+      </p>
+    </section>
+
+    <!-- 1) Informing decision-makers -->
+    <section class="topic" id="informing">
+      <h2>Expert Briefings</h2>
+      <p class="lede">🎙️ Bringing climate intervention and agricultural risks directly into rooms where decisions are
+        made.</p>
+      <!-- TODO: get rid of ledes -->
+
+      <div class="grid">
+        <div>
+          <p>
+            I’ve briefed both national and international policymakers on the science of climate intervention,
+            especially how stratospheric aerosol injections (SAI) could interact with food security and the
+            Sustainable Development Goals (SDGs).
+          </p>
+
+          <ul class="highlight-list">
+            <li>Virtual briefing to <strong>300+ officials from Global Affairs Canada</strong> about geoengineering
+              agricultural risks and tradeoffs.</li>
+            <li>Invited to brief <strong>international policymakers</strong> on SRM and its implications for SDGs.</li>
+          </ul>
+
+          <div class="tagline">
+            <strong>Why this matters:</strong> SRM and other interventions are moving from abstract ideas into real-world
+            policy conversations. Clear, honest, and caveat-rich briefings help avoid both hype and dismissal.
+          </div>
+        </div>
+
+        <div>
+          <figure class="img-wrap">
+            <div class="img-wrap-inner">
+              <img src="assets/images/policy/canada.jpg" alt="GAC Panelists Screenshot" />
+            </div>
+          </figure>
+          <p style="margin-top: 0.6rem; margin-left: 0.6rem; font-size: 0.95rem; opacity: 0.8;">
+            <em>Speaking on a Global Affairs Canada panel on the modern challenges of climate engineering.</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Congressional visits & AGU LSP -->
+    <section class="topic" id="congress">
+      <h2>Engaging with Congress</h2>
+      <p class="lede">🏛️ Bringing science directly to the people who shape policy</p>
+
+      <div class="grid">
+        <div>
+          <p>
+            As an <strong>AGU Local Science Partner</strong>, I regularly reach out to my federal legislators to
+            advocate for strong science funding and evidence-based climate policy.
+          </p>
+
+          <ul class="highlight-list">
+            <li><strong>Two in-person congressional visits</strong> to discuss federal science funding and climate
+              research needs.</li>
+            <li>Participated in AGU’s <strong>Spring Congressional Visit Workshop</strong>, with mock meetings and
+              messaging practice.</li>
+          </ul>
+
+          <div class="compact-box">
+            <strong>Ongoing engagement includes:</strong>
+            <ul>
+              <li>Responding to AGU’s Science Policy Action Center alerts with calls and emails.</li>
+              <li>Following American Association for the Advancement of Science (AAAS) and AGU policy updates to track key legislation.</li>
+              <li>Coordinating with other early-career scientists to amplify shared priorities.</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <figure class="img-wrap">
+            <div class="img-wrap-inner">
+              <img src="assets/images/policy/congress_visit.jpg" alt="GAC Panelists Screenshot" />
+            </div>
+          </figure>
+          <p style="margin-top: 0.6rem; margin-left: 0.6rem; font-size: 0.95rem; opacity: 0.8;">
+            <em>Meeting with staff from Senator Budd’s office during one of my congressional visits.</em> 
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Training & citizen leadership -->
+    <section class="topic" id="training">
+      <h2>Building Civic & Policy Skills</h2>
+      <p class="lede">🧭 Learning how everyday people — including scientists — can influence systems from the inside out.</p>
+
+      <div class="grid">
+        <div>
+          <p>
+            I invest in structured training on how government actually works, and how to engage it
+            constructively as a citizen and scientist.
+          </p>
+
+          <ul class="highlight-list">
+            <li><strong><a href="https://spaa.newark.rutgers.edu/leadership-and-no-blame-problem-solving-certificate"
+                  target="_blank" rel="noopener noreferrer">Leadership certificate</a></strong> in No-Blame
+              Problem Solving and practical governance skills.</li>
+            <li>Workshops on <strong>science policy</strong>, <strong>science communication</strong>, and media
+              engagement through AGU, AAAS, and Rutgers University.</li>
+          </ul>
+
+          <div class="compact-box">
+            <strong>Core themes across these trainings:</strong>
+            <ul>
+              <li>Mapping local power structures and decision points.</li>
+              <li>Designing actionable, nonpartisan policy asks.</li>
+              <li>Communicating uncertainty without undermining urgency.</li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="img-wrap">
+          <!-- Replace with photo from a workshop / training / Hill day -->
+          <!-- e.g. assets/images/nina_workshop.jpg -->
+          <img src="assets/images/policy/20241212_111038.jpg" alt="Nina participating in a science policy workshop" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- Portrait Photo Gallery -->
+    <section style="margin: 4rem 0;">
+      <div class="container" style="text-align: center;">
+
+        <h3 style="margin-bottom: 1.5rem; color:#023e8a;">Cherry Blossoms in D.C.</h3>
+
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+          ">
+          <img src="assets/images/policy/20250327_142609.jpg" alt="Photo 1" style="
+              width: 100%; 
+              height: auto; 
+              border-radius: 10px; 
+              object-fit: cover;
+              aspect-ratio: 3/4;
+              box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+              cursor: pointer;
+            ">
+
+          <img src="assets/images/policy/20250327_142921.jpg" alt="Photo 2" style="
+              width: 100%; 
+              height: auto; 
+              border-radius: 10px; 
+              object-fit: cover;
+              aspect-ratio: 3/4;
+              box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+              cursor: pointer;
+            ">
+
+          <img src="assets/images/policy/20250327_142947.jpg" alt="Photo 3" style="
+              width: 100%; 
+              height: auto; 
+              border-radius: 10px; 
+              object-fit: cover;
+              aspect-ratio: 3/4;
+              box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+              cursor: pointer;
+            ">
+
+          <img src="assets/images/policy/IMG_20240319_150020.jpg" alt="Photo 4" style="
+              width: 100%; 
+              height: auto; 
+              border-radius: 10px; 
+              object-fit: cover;
+              aspect-ratio: 3/4;
+              box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+              cursor: pointer;
+            ">
+          <!-- TODO: add fifth photo and turn to gallery or get 6th pic for better grid -->
+          <!-- TODO: Add expand on click feature -->
+        </div>
+
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.75;">
+          Captured during my Congressional Visit — perfect timing with peak bloom.
+        </p>
+
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    ©
+    <script>document.write(new Date().getFullYear());</script> Nina Grant
+  </footer>
+
+  <!-- Scroll-to-top -->
+  <button id="scrollTopBtn" title="Back to top">↑</button>
+
+  <script>
+    // Nav scroll background
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // Mobile menu toggle
+    (function () {
+      const toggle = document.getElementById('menuToggle');
+      const links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', (!expanded).toString());
+      });
+
+      links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    // Scroll-to-top button
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+      if (document.documentElement.scrollTop > 200 || document.body.scrollTop > 200) {
+        scrollBtn.style.display = "block";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    });
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // External links open in new tab
+    document.querySelectorAll('a[href^="http"], a[href$=".pdf"]').forEach(link => {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    });
+  </script>
+</body>
+
+</html>

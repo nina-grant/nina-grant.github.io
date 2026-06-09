@@ -104,6 +104,67 @@
     /* Callout */
     .why{margin-top:1rem;padding:1rem;border-left:4px solid var(--blue-700);background:rgba(72,202,228,.12);border-radius:8px}
 
+    /* Credential tiles */
+    .cred-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.25rem;
+      margin-bottom:2rem;
+    }
+    @media(max-width:640px){.cred-grid{grid-template-columns:1fr;}}
+
+    .cred-tile{
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 6px 20px rgba(0,0,0,.08);
+      display:flex;
+      flex-direction:row;
+      align-items:stretch;
+    }
+    .cred-tile.sigma-xi{
+      background:linear-gradient(160deg,#fffbe6 0%,#fff3cd 100%);
+      border:1.5px solid #f0c040;
+    }
+    .cred-tile.yvos{
+      background:linear-gradient(160deg,#e8f4fd 0%,#d0eaf8 100%);
+      border:1.5px solid var(--blue-400);
+    }
+    .cred-tile-img{
+      width:120px;
+      flex-shrink:0;
+      object-fit:cover;
+      display:block;
+    }
+    .cred-tile-img-placeholder{
+      width:120px;
+      flex-shrink:0;
+      background:var(--bg-grad);
+      display:flex;align-items:center;justify-content:center;
+      font-size:2.5rem;
+    }
+    .cred-tile-body{
+      padding:.9rem 1rem;
+      flex:1;display:flex;flex-direction:column;gap:.3rem;
+    }
+    .cred-tile-label{
+      font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .sigma-xi .cred-tile-label{color:#9a6f00;}
+    .yvos .cred-tile-label{color:var(--blue-700);}
+    .cred-tile-body strong{
+      font-size:.95rem;line-height:1.4;display:block;
+    }
+    .sigma-xi .cred-tile-body strong{color:#5a3a00;}
+    .yvos .cred-tile-body strong{color:var(--blue-900);}
+    .cred-tile-body p{font-size:.83rem;color:#4c5b6b;margin:0;}
+    .award-pill{
+      display:inline-block;margin-top:.4rem;padding:.15rem .6rem;
+      font-size:.72rem;font-weight:700;border-radius:20px;letter-spacing:.04em;
+      text-transform:uppercase;align-self:flex-start;
+    }
+    .sigma-xi .award-pill{background:#f0c040;color:#5a3a00;}
+    .yvos .award-pill{background:var(--blue-400);color:#fff;}
+
     footer{padding:3rem 1rem;text-align:center;color:#4c5b6b}
 
     /* scroll to top button */
@@ -148,7 +209,7 @@
   <!-- Nav -->
   <nav id="navbar">
     <div class="nav-container">
-      <div class="logo">Nina Grant</div>
+      <div class="logo">Nina Grant, Ph.D.</div>
         <button class="menu-toggle" aria-label="Menu" id="menuToggle">
             <span></span>
             <span></span>
@@ -187,6 +248,62 @@
       </p>
       <!-- TODO: write an explainer and maybe diagram explaining terminology -->
       <!-- <div class="why"><strong>A quick explainer on vocab</strong> This field has too many names and subfields...</div> -->
+    </section>
+
+     <!-- Credentials -->
+    <div class="cred-grid">
+
+        <!-- Sigma Xi tile -->
+        <div class="cred-tile sigma-xi">
+          <div class="cred-tile-img-placeholder">🏆</div>
+          <div class="cred-tile-body">
+            <span class="cred-tile-label">Award · 2026</span>
+            <strong>1st Place — Sigma Xi Student Research Showcase</strong>
+            <p>National competition recognizing student science communication skills across all disciplines. </p>
+            <span class="award-pill">🏆 First Place</span>
+          </div>
+        </div>
+
+        <!-- Young Voices of Science tile -->
+        <div class="cred-tile yvos">
+          <img class="cred-tile-img" src="/assets/images/sciComm/YVOSLogo_0-1.png" alt="Young Voices of Science" />
+          <div class="cred-tile-body">
+            <span class="cred-tile-label">Training Program · 2026</span>
+            <strong>Young Voices of Science</strong>
+            <p>A science communication workshop series where researchers learn to translate their work for general audiences through structured coaching. </p>
+            <span class="award-pill">Alumni</span>
+          </div>
+        </div>
+
+    </div>
+
+    <!-- Tile 0: Volcano / Vimeo Video — Sigma Xi winner -->
+    <section class="tile" id="volcano-video">
+      <h2>🌋 Can Volcanoes Save Coffee &amp; Chocolate from Climate Change?</h2>
+      <p class="lede">A plain-language research explainer — <strong>1st Place, Sigma Xi Student Research Showcase 2026</strong> &amp; Young Voices of Science final project.</p>
+      <div class="grid">
+        <div>
+          <p>
+            Most recently, I completed the <strong><a href="https://youngvoicesofscience.org/" target="_blank" rel="noopener">
+            Young Voices of Science</a></strong> science communication training program, 
+            where scientists learn to translate their research for general audiences through structured workshops and coaching. 
+            As my capstone, I produced a short film explaining my doctoral research on geoengineering and tropical crop impacts 
+            in plain language — no jargon, no assumed background. I entered the film in the 
+            <strong>Sigma Xi Student Research Showcase 2026</strong>, an annual national competition recognizing graduate student 
+            research across all disciplines, and won <strong>first place</strong> in the graduate division.
+          </p>
+          <div class="links">
+            <a href="https://vimeo.com/1179683219?fl=pl&fe=sh" target="_blank" rel="noopener">▶️ Watch on Vimeo</a>
+            <a href="https://events.projectboard.world/srs2026/project/225624" target="_blank" rel="noopener">🏆 View Sigma Xi Showcase entry</a>
+          </div>
+        </div>
+        <figure class="media-wrap">
+          <iframe src="https://player.vimeo.com/video/1179683219"
+                  title="Can volcanoes save coffee and chocolate from climate change?"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen></iframe>
+        </figure>
+      </div>
     </section>
 
     <!-- Tile 1: Solar Geo Video -->
